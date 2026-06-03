@@ -3,7 +3,6 @@ import { products } from "../data/producto";
 
 function Catalogo() {
   return (
-    // #USO DE IA: promp para que me genere la semantica html estilado con tailwind para ahorrar tiempo de codigo mas basico.
     <>
       <main className="mx-auto max-w-7xl px-6 py-10">
         <header className="mb-8">
