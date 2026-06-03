@@ -6,16 +6,22 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Catalogo from "./pages/Catalogo.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import DetalleProducto from "./pages/DetalleProducto.tsx";
+import MainLayout from "./layouts/MainLayout.tsx";
 
 const ruta = createBrowserRouter([
   {
     path: "/",
-    element: <Catalogo />,
-    index: true,
-  },
-  {
-    path: "/producto/:id",
-    element: <DetalleProducto />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/productos",
+        element: <Catalogo />,
+      },
+      {
+        path: "/producto/:id",
+        element: <DetalleProducto />,
+      },
+    ],
   },
   {
     path: "*",
