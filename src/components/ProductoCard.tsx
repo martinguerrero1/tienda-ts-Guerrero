@@ -7,7 +7,6 @@ function ProductoCard({
   producto: ProductoPreview;
 }) {
   return (
-    // #USO DE IA: promp para que me genere la semantica html estilado con tailwind para ahorrar tiempo de codigo mas basico.
     <Link
       to={`/producto/${id}`}
       className="flex flex-col rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-lg"
