@@ -1,8 +1,11 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../assets/appwise.png";
+import useCarrito from "../features/carrito/useCarrito";
 
 export default function Header() {
+  const Carrito = useCarrito();
+
   return (
     <header className="border-b bg-white shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -30,9 +33,13 @@ export default function Header() {
 
           <button
             aria-label="Abrir carrito"
-            className="rounded-lg p-2 text-xl text-gray-700 transition hover:bg-gray-100 hover:text-blue-600"
+            className="rounded-lg p-2 text-xl text-gray-700 transition hover:bg-gray-100 hover:text-blue-600 relative"
           >
             <FaShoppingCart />
+            <span className="absolute -bottom-1.5 -right-1.5">
+              {" "}
+              {Carrito.totalItems}{" "}
+            </span>
           </button>
 
           <button
