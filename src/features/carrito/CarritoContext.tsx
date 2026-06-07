@@ -12,10 +12,12 @@ type CarritoContextValue = {
   totalPrecio: number; // calculado, no guardado
 };
 
+//CREACION DEL CONTEXTO
 export const CarritoContext = createContext<CarritoContextValue | undefined>(
   undefined,
 );
 
+//CREACION DEL PROVIDER
 export function CarritoProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useLocalStorage<ProductoEnCarrito[]>(
     "carrito:v1",

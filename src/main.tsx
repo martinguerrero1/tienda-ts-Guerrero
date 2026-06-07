@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Catalogo from "./pages/Catalogo.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import DetalleProducto from "./pages/DetalleProducto.tsx";
 import MainLayout from "./layouts/MainLayout.tsx";
+import { CarritoProvider } from "./features/carrito/CarritoContext.tsx";
 
 const ruta = createBrowserRouter([
   {
@@ -31,6 +31,8 @@ const ruta = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={ruta} />
+    <CarritoProvider>
+      <RouterProvider router={ruta} />
+    </CarritoProvider>
   </StrictMode>,
 );
