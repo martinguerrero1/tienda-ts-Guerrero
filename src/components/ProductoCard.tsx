@@ -1,10 +1,14 @@
 import type { Producto } from "../types/producto";
 import { Link } from "react-router-dom";
-import useCarrito from "../features/carrito/useCarrito";
+import React from "react";
 
-export default function ProductoCard({ producto }: { producto: Producto }) {
-  const Carrito = useCarrito();
-
+function ProductoCard({
+  producto,
+  onAgregar,
+}: {
+  producto: Producto;
+  onAgregar: (producto: Producto) => void;
+}) {
   return (
     <article className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <Link to={`/producto/${producto.id}`} className="flex flex-1 flex-col">
@@ -30,7 +34,7 @@ export default function ProductoCard({ producto }: { producto: Producto }) {
       <div className="p-4 pt-0">
         <button
           className="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700"
-          onClick={() => Carrito.agregarItem(producto)}
+          onClick={() => onAgregar(producto)}
         >
           Agregar al carrito
         </button>
@@ -38,3 +42,5 @@ export default function ProductoCard({ producto }: { producto: Producto }) {
     </article>
   );
 }
+
+export default React.memo(ProductoCard);

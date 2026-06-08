@@ -4,18 +4,23 @@ import LoadingMessage from "../components/LoadingMessage";
 import ErrorMessage from "../components/ErrorMessage";
 import { useMemo, useState } from "react";
 import type { Producto } from "../types/producto";
+import useCarrito from "../features/carrito/useCarrito";
 
 function Catalogo() {
-  //filtros
+  //carrito
+  const Carrito = useCarrito();
+
+  //estado de los filtros
   const [busqueda, setBusqueda] = useState("");
   const [categoria, setCategoria] = useState("");
   const [precio, setPrecio] = useState("");
 
+  //estado de productos
   const estadoProductos = useProductos({ search: busqueda });
   const productos =
     estadoProductos.status === "success" ? estadoProductos.data : [];
 
-  //useMemo
+  //useMemo para los productos con filtro
   const productosFiltrados: Producto[] = useMemo(() => {
     //useMemo para que "guarde" este valor a no ser que cambie una de las dependencias
 
@@ -125,7 +130,11 @@ function Catalogo() {
         {estadoProductos.status === "success" && (
           <section className="grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {productosFiltrados.map((producto) => (
-              <ProductoCard producto={producto} key={producto.id} />
+              <ProductoCard
+                producto={producto}
+                onAgregar={Carrito.agregarItem}
+                key={producto.id}
+              />
             ))}
           </section>
         )}
