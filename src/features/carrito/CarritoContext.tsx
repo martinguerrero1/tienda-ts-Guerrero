@@ -83,7 +83,7 @@ export function CarritoProvider({ children }: { children: ReactNode }) {
   const totalPrecio = useMemo(() => {
     return items.reduce((acc, item) => {
       acc = acc + item.price * item.cantidad;
-      return acc;
+      return Number(acc.toFixed(2));
     }, 0);
   }, [items]);
 

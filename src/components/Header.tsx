@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/appwise.png";
 import useCarrito from "../features/carrito/useCarrito";
 
-export default function Header() {
+export default function Header({ onToggle }: { onToggle: () => void }) {
   const Carrito = useCarrito();
 
   return (
@@ -34,6 +34,7 @@ export default function Header() {
           <button
             aria-label="Abrir carrito"
             className="rounded-lg p-2 text-xl text-gray-700 transition hover:bg-gray-100 hover:text-blue-600 relative"
+            onClick={onToggle}
           >
             <FaShoppingCart />
             <span className="absolute -bottom-1.5 -right-1.5">

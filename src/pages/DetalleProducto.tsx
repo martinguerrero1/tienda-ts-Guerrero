@@ -2,10 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import useProductos from "../hooks/useProductos";
 import LoadingMessage from "../components/LoadingMessage";
 import ErrorMessage from "../components/ErrorMessage";
+import useCarrito from "../features/carrito/useCarrito";
 
 function DetalleProducto() {
   const { id } = useParams();
 
+  const Carrito = useCarrito();
   const estadoProductos = useProductos({});
 
   switch (estadoProductos.status) {
@@ -63,7 +65,10 @@ function DetalleProducto() {
                     ${producto.price}
                   </p>
 
-                  <button className="mt-4 w-full rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700">
+                  <button
+                    className="mt-4 w-full rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+                    onClick={() => Carrito.agregarItem(producto)}
+                  >
                     Agregar al carrito
                   </button>
                 </div>
@@ -71,7 +76,7 @@ function DetalleProducto() {
             </div>
 
             <Link
-              to="/"
+              to="/productos"
               className="w-fit rounded-lg px-5 py-2 bg-blue-600 text-white transition-colors hover:bg-blue-700"
             >
               Volver al catálogo
